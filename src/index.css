@@ -1,0 +1,5 @@
+/* Reset index.css to prevent layout constraints on #root */
+body {
+  margin: 0;
+  padding: 0;
+}

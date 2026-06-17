@@ -1,0 +1,588 @@
+/* --- Global & Resets --- */
+:root {
+    /* Pale/Light Green Theme */
+    --primary-color: #2F855A; /* Deep rich green for text/buttons */
+    --secondary-color: #48BB78; /* Lighter accent green */
+    --bg-light: #F0FFF4; /* Very pale green for alternating sections */
+    --bg-white: #FFFFFF;
+    --text-dark: #22543D; /* Darker green for main text */
+    --text-muted: #4A5568;
+    --white: #FFFFFF;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease-in-out;
+    --font-family: 'Outfit', sans-serif;
+}
+
+.arshith-it-body {
+    font-family: var(--font-family);
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    line-height: 1.6;
+}
+
+.arshith-it-body a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.arshith-it-body ul {
+    list-style: none;
+}
+
+.arshith-it-body .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.arshith-it-body .text-center {
+    text-align: center;
+}
+
+/* First Section */
+.arshith-it-body .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background container */
+.arshith-it-body .hero-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Each background image */
+.arshith-it-body .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fade 5s infinite;
+}
+
+/* Images */
+.arshith-it-body .bg1 { background-image: url("/css/logos/bg1.jpg.webp"); animation-delay: 0s; }
+.arshith-it-body .bg3 { background-image: url("/css/logos/bg3.webp"); animation-delay: 10s; }
+
+/* Fade animation */
+@keyframes fade {
+    0%   { opacity: 0; }
+    10%  { opacity: 1; }
+    30%  { opacity: 1; }
+    40%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Overlay */
+.arshith-it-body .hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+/* Content */
+.arshith-it-body .hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+}
+
+/* Video Background */
+.arshith-it-body .bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* Third Section */
+.arshith-it-body .section {
+    padding: 60px 0;
+}
+
+.arshith-it-body .section1 {
+    padding: 60px 0;
+    background-color: #9dd29f;
+}
+
+.arshith-it-body .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.arshith-it-body .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+}
+
+/* STACK CARDS */
+.arshith-it-body .services-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* CARD */
+.arshith-it-body .service-card {
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    min-height: 280px;
+    position: relative;
+    border: 1px solid rgba(72, 187, 120, 0.1);
+    transition: var(--transition);
+}
+
+.arshith-it-body .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.arshith-it-body .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.arshith-it-body .service-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* TEXT SIDE */
+.arshith-it-body .card-text {
+    width: 50%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ICON */
+.arshith-it-body .icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.arshith-it-body .card-text h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.arshith-it-body .card-text p {
+    color: var(--text-muted);
+}
+
+/* IMAGE SIDE */
+.arshith-it-body .card-image {
+    width: 50%;
+    overflow: hidden;
+}
+
+.arshith-it-body .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+    .arshith-it-body .service-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .arshith-it-body .card-text,
+    .arshith-it-body .card-image {
+        width: 100%;
+    }
+
+    .arshith-it-body .card-image {
+        height: 200px;
+    }
+}
+
+/* Fourth Section - Projects */
+.arshith-it-body .projects-section {
+    padding: 70px 0;
+    background: #f6fdf8;
+}
+
+/* GRID */
+.arshith-it-body .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* CARD */
+.arshith-it-body .project-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+
+/* IMAGE */
+.arshith-it-body .project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* CONTENT */
+.arshith-it-body .project-content {
+    padding: 15px;
+}
+
+.arshith-it-body .project-content h3 {
+    color: #2ecc71;
+    margin-bottom: 8px;
+}
+
+/* HOVER EFFECT */
+.arshith-it-body .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.arshith-it-body .light-bg {
+    background-color: var(--bg-light);
+}
+
+/* Buttons */
+.arshith-it-body .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.arshith-it-body .btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 4px 14px 0 rgba(47, 133, 90, 0.39);
+}
+
+.arshith-it-body .btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(47, 133, 90, 0.23);
+}
+
+/* Navbar */
+.arshith-it-body .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.arshith-it-body .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.arshith-it-body .nav-links {
+    transition: var(--transition);
+}
+
+.arshith-it-body .nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+.arshith-it-body .nav-list a {
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.arshith-it-body .nav-list a:hover {
+    color: var(--secondary-color);
+}
+
+.arshith-it-body .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* Services Overview */
+.arshith-it-body .service-list-simple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+
+.arshith-it-body .service-item {
+    background-color: var(--white);
+    width : 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(72, 187, 120, 0.2);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: var(--transition);
+}
+
+.arshith-it-body .service-item::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.arshith-it-body .service-item h3 {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    z-index: 2;
+}
+
+/* About Us */
+.arshith-it-body .about-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.arshith-it-body .about-content {
+    flex: 1;
+}
+
+.arshith-it-body .custom-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+.arshith-it-body .custom-list li i {
+    color: var(--secondary-color);
+    margin-top: 5px;
+}
+
+.arshith-it-body .about-image {
+    flex: 1;
+}
+
+.arshith-it-body .placeholder-graphic {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    opacity: 0.8;
+}
+
+/* Internship */
+.arshith-it-body .highlights {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.arshith-it-body .highlight-item {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    width: 250px;
+    transition: var(--transition);
+}
+
+.arshith-it-body .highlight-item:hover {
+    transform: translateY(-5px);
+}
+
+.arshith-it-body .highlight-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Collaboration */
+.arshith-it-body .logo-slider {
+    overflow: hidden;
+    padding: 20px 0;
+    white-space: nowrap;
+    position: relative;
+}
+
+.arshith-it-body .logo-slider::before,
+.arshith-it-body .logo-slider::after {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.arshith-it-body .logo-slider::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-white) 0%, rgba(255,255,255,0) 100%);
+}
+
+.arshith-it-body .logo-slider::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-white) 0%, rgba(255,255,255,0) 100%);
+}
+
+.arshith-it-body .logo-track {
+    display: inline-block;
+    animation: slide 20s linear infinite;
+}
+
+.arshith-it-body .collab-logo {
+    display: inline-block;
+    padding: 15px 40px;
+    margin: 0 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.arshith-it-body .collab-logo:hover {
+    opacity: 1;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Contact Section */
+.arshith-it-body .contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.arshith-it-body .contact-item {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    width: 250px;
+}
+
+.arshith-it-body .contact-item i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .arshith-it-body .about-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .arshith-it-body .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+
+    .arshith-it-body .nav-links.active {
+        display: block;
+    }
+
+    .arshith-it-body .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .arshith-it-body .hamburger {
+        display: block;
+    }
+}
+
+.arshith-it-body .bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 180px;
+    width: 100%;
+    height: 900px;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}

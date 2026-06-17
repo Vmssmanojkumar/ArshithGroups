@@ -1,0 +1,2097 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arshith Group</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Condensed:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles2.css" />
+    <link rel="stylesheet" href="footer-premium.css" />
+    <!-- Google Fonts for Companies Section -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --comp-bg-soft: linear-gradient(
+          180deg,
+          rgba(246, 249, 255, 0.98),
+          rgba(242, 244, 255, 0.96)
+        );
+        --comp-text: #0f172a;
+        --comp-muted: #475569;
+        --comp-border: rgba(0, 0, 0, 0.08);
+        --comp-font-heading: "Outfit", sans-serif;
+        --comp-font-body: "Inter", sans-serif;
+        --comp-accent: #2563eb;
+      }
+
+      /* COMPANIES SHOWCASE */
+      .home-company-section {
+        background: var(--comp-bg-soft);
+        padding: 80px 0;
+        border-radius: 40px;
+        margin: 40px 0;
+        border: 1px solid var(--comp-border);
+      }
+
+      .home-company-section .section-heading {
+        margin-bottom: 2rem;
+        text-align: left;
+      }
+
+      .home-company-section .section-tag {
+        font-family: var(--comp-font-heading);
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--comp-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .home-company-section .section-heading h2 {
+        font-family: var(--comp-font-heading);
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        font-weight: 800;
+        color: var(--comp-text);
+        line-height: 1.15;
+      }
+
+      .home-company-showcase {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 1.15fr);
+        gap: 3rem;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .home-company-image-panel {
+        display: flex;
+        justify-content: center;
+      }
+
+      .home-company-image-card {
+        width: min(100%, 500px);
+        padding: 1.2rem;
+        border-radius: 34px;
+        background: rgba(255, 255, 255, 0.98);
+        border: 1px solid rgba(206, 217, 230, 0.9);
+        box-shadow: 0 24px 54px rgba(12, 43, 73, 0.06);
+        overflow: hidden;
+        transition: transform 0.4s ease;
+      }
+
+      .home-company-image-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .home-company-image-card img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+
+      /* SCROLLING POSTER WALL */
+      .poster-wall {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.85rem;
+        align-items: center;
+        height: 650px;
+        padding: 0.6rem;
+        overflow: hidden;
+      }
+
+      .poster-rail {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(159, 194, 244, 0.08);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(8px);
+      }
+
+      .poster-rail-track {
+        display: flex;
+        flex-direction: column;
+        will-change: transform;
+      }
+
+      .poster-rail-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      .poster-rail.up .poster-rail-track {
+        animation: railUp var(--rail-duration) linear infinite;
+      }
+
+      .poster-rail.down .poster-rail-track {
+        animation: railDown var(--rail-duration) linear infinite;
+      }
+
+      .poster-card {
+        position: relative;
+        flex-shrink: 0;
+        min-height: 140px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 14px 30px rgba(4, 8, 18, 0.12);
+        background: #0c1020;
+        transform: translateZ(0);
+        display: block;
+        text-decoration: none;
+      }
+
+      .poster-card.tall {
+        min-height: 200px;
+      }
+
+      .poster-card-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.04);
+        transition: transform 0.45s ease;
+      }
+
+      .poster-card:hover .poster-card-image {
+        transform: scale(1.08);
+      }
+
+      .poster-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(10, 14, 26, 0.02) 0%,
+            rgba(10, 14, 26, 0.65) 100%
+          ),
+          linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, transparent 60%);
+        z-index: 1;
+      }
+
+      .poster-card-copy {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 0.95rem;
+        color: #fff;
+      }
+
+      .poster-card-copy h3 {
+        font-family: var(--comp-font-heading);
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.15;
+        color: #fff;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      .poster-card-copy p {
+        margin-top: 0.2rem;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.75rem;
+        line-height: 1.4;
+      }
+
+      @keyframes railUp {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-50%);
+        }
+      }
+
+      @keyframes railDown {
+        from {
+          transform: translateY(-50%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      /* RESPONSIVE STYLES */
+      @media (max-width: 992px) {
+        .home-company-showcase {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .home-company-image-card {
+          max-width: 440px;
+          margin: 0 auto;
+        }
+
+        .poster-wall {
+          height: 550px;
+          padding: 0.3rem;
+          gap: 0.6rem;
+        }
+
+        .poster-card {
+          min-height: 120px;
+        }
+
+        .poster-card.tall {
+          min-height: 170px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .home-company-section {
+          padding: 40px 0;
+          border-radius: 24px;
+        }
+        .poster-wall {
+          height: 450px;
+          gap: 0.45rem;
+        }
+        .poster-card {
+          min-height: 100px;
+          border-radius: 14px;
+        }
+        .poster-card.tall {
+          min-height: 140px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════ LOADING SCREEN ══════════ -->
+    <div id="loader">
+      <div class="ld-logo">
+        <video
+          src="./assets/reloader.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          style="max-width: 700px"
+        ></video>
+      </div>
+    </div>
+    <div id="pbar"></div>
+
+    <!-- ══════════ HEADER / NAV ══════════ -->
+    <header class="ag-header" id="agHeader">
+      <nav class="ag-nav container">
+        <a href="index.html" class="ag-logo">
+          <img
+            src="./logos/LOGO-removebg-preview.png"
+            alt="Arshith Logo"
+            class="ag-logo-img"
+          />
+        </a>
+        <ul class="ag-nav-links" id="agNavLinks">
+          <li class="ag-nav-item">
+            <a href="aboutceo.html">About Us </a>
+            <!-- <div class="ag-dropdown">
+          <a href="#">Arshith Group</a>
+          <a href="#">CEO Office</a>
+          <a href="#">Leadership</a>
+          <a href="#">Our Journey</a>
+          <a href="#">Awards</a>
+        </div> -->
+          </li>
+          <li class="ag-nav-item ag-has-drop">
+            <a href="#"
+              >Businesses <i class="fa-solid fa-chevron-down ag-caret"></i
+            ></a>
+            <div class="ag-dropdown">
+              <a href="infotech.html" target="_blank">IT Services & IT Consulting</a>
+              <a href="https://arshithfresh.com/" target="_blank">E-Commerce</a>
+              <a href="https://seller.arshithfresh.com/" target="_blank">Multi sellers</a>
+              <a href="https://suntechorganization.com/" target="_blank"
+                >Business Consulting &amp; Services</a
+              >
+              <a href="https://suntechorganization.com/" target="_blank">Digital Marketing</a>
+            </div>
+          </li>
+          <!-- <li class="ag-nav-item"><a href="#">Sustainability</a></li> -->
+          <li class="ag-nav-item ag-has-drop">
+            <a href="#"
+              >News <i class="fa-solid fa-chevron-down ag-caret"></i
+            ></a>
+            <div class="ag-dropdown">
+              <a href="LatestNews.html">Latest News</a>
+              <!-- <a href="#"></a> -->
+            </div>
+          </li>
+          <li class="ag-nav-item ag-has-drop">
+            <a href="#"
+              >Careers <i class="fa-solid fa-chevron-down ag-caret"></i
+            ></a>
+            <div class="ag-dropdown">
+              <a href="https://arshithfresh.com/pages/internship">Internship</a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeuJ0Gypsx9tuPK9jHDwNQchAXFtykeKWD7NPBb_VxilLdYwA/viewform?usp=publish-editor"
+                >Technical Confirmation</a
+              >
+              <a href="https://quizzory.in/id/69f06408b86cdfe2ea25b728"
+                >Online Assessment</a
+              >
+            </div>
+          </li>
+          <li class="ag-nav-item"><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="ag-nav-right">
+          <button class="ag-hamburger" id="agHamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero / Slider Banner Section -->
+    <section class="hero-cinematic" id="heroCinematic" style="margin-top: 80px">
+      <!-- Slide 1 -->
+      <div class="cinematic-slide active">
+        <!-- Background Image -->
+        <div
+          class="cinematic-bg"
+          style="background-image: url(&quot;./logos/ecommerce3.png&quot;)"
+        ></div>
+        <!-- Slide Content -->
+        <div class="cinematic-content">
+          <div class="cinematic-badge" style="background: var(--primary)">
+            E-Commerce
+          </div>
+          <h2 class="cinematic-title" style="color: rgb(253, 255, 254)">
+            Arshith Fresh
+          </h2>
+          <p class="cinematic-desc">
+            Rooted in nature, grown with care, We bring freshness beyond
+            compare. From farm to you, pure and true, Quality you trust in all
+            we do..
+          </p>
+          <div>
+            <a href="https://arshithfresh.com/" class="btn-cinematic"
+              >Know More <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="cinematic-slide">
+        <!-- Background Image -->
+        <div
+          class="cinematic-bg"
+          style="
+            background-image: url(&quot;./logos/infotech.jpeg&quot;);
+            background-position: center;
+          "
+        ></div>
+        <!-- Slide Content -->
+        <div class="cinematic-content">
+          <div class="cinematic-badge" style="background: var(--primary)">
+            IT Services & IT Consulting
+          </div>
+          <h2 class="cinematic-title">ArshithInfoTech</h2>
+          <p class="cinematic-desc">
+            Building innovative solutions with modern code, Turning ideas into a
+            powerful digital mode, Driven by quality, performance, and trust,
+            Delivering excellence through ArshithInfoTech.
+          </p>
+          <div>
+            <a href="infotech.html" class="btn-cinematic"
+              >Know More <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="cinematic-slide">
+        <!-- Background Image -->
+        <div
+          class="cinematic-bg"
+          style="background-image: url(&quot;./logos/nonit.png&quot;)"
+        ></div>
+        <!-- Slide Content -->
+        <div class="cinematic-content">
+          <div class="cinematic-badge" style="background: var(--primary)">
+            Business Consulting & Services
+          </div>
+          <h2 class="cinematic-title">Suntech Solutions.</h2>
+          <p class="cinematic-desc">
+            Empowering businesses with smart digital solutions, Driving growth
+            through innovation and precision. Your trusted partner for success
+            and transformation, Building a stronger future with Suntech
+            Organization.
+          </p>
+          <div>
+            <a href="https://suntechorganization.com/" class="btn-cinematic"
+              >Know More <i class="fa-solid fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Controls -->
+      <div class="cinematic-controls">
+        <div class="cinematic-arrow prev-cine">
+          <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="cinematic-arrow next-cine">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="cinematic-indicators">
+        <div class="dot-cine active" data-index="0"></div>
+        <div class="dot-cine" data-index="1"></div>
+        <div class="dot-cine" data-index="2"></div>
+      </div>
+    </section>
+
+    <!-- SCROLLING INFO -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item"
+          ><span class="marquee-dot"></span>E-Commerce</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>IT Services</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Digital Consulting</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Arshith Fresh</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Web Development</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Cloud Solutions</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Arshith InfoTech</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Est. 2019</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Suntech Solutions</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>E-Commerce</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>IT Services</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Digital Consulting</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Arshith Fresh</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Web Development</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Cloud Solutions</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Arshith InfoTech</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Est. 2019</span
+        ><span class="marquee-item"
+          ><span class="marquee-dot"></span>Suntech Solutions</span
+        >
+      </div>
+    </div>
+
+    <div class="quote-card">
+      <!-- LEFT CONTENT -->
+      <div class="quote-right">
+        <div class="quote-text">
+          <p>
+            We believe growth is more than scaling a business—it’s about building trust, 
+            creating opportunities, and 
+            shaping a future where progress benefits everyone.
+          </p>
+        </div>
+        <div class="quote-footer">
+          <h3>Farook N</h3>
+          <span>Chief Exicutive Officer, Arshith Group</span>
+
+          <a href="aboutceo.html" class="btn btn-outline">View Profile</a>
+        </div>
+
+        <!-- Business Section -->
+      </div>
+      <!-- RIGHT IMAGE -->
+      <div class="quote-left">
+        <img src="./logos/sir(1)(1).png" alt="Gautam Adani" />
+      </div>
+    </div>
+    <!-- Three Companies Group Section -->
+    <section id="companies" class="home-company-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-tag">Companies</p>
+          <h2>Three companies, one connected group</h2>
+        </div>
+
+        <div class="home-company-showcase">
+          <!-- Left Panel: Hierarchy Diagram -->
+          <div class="home-company-image-panel">
+            <div class="home-company-image-card">
+              <img
+                src="./companies-reference.jpeg"
+                alt="Company hierarchy design reference"
+              />
+            </div>
+          </div>
+
+          <!-- Right Panel: Scrolling Rails Animation -->
+          <div class="poster-wall" aria-label="Company showcase posters">
+            <!-- Rail 1 (Up) -->
+            <div class="poster-rail up" style="--rail-duration: 28s">
+              <div class="poster-rail-track">
+                <!-- Group 1 -->
+                <div class="poster-rail-group">
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/ad/31/92/ad3192e9ac6169a2614d932ded3b54e6.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card tall"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/control1/736x/95/04/5f/95045fafecf5a86dbf704012906fb91b.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/3a/03/6a/3a036a16477e9d64e309734792c740e3.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card tall"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/f8/82/bd/f882bd2d5ead41a09966ad81c292f1e5.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Group 2 (Repeat for Loop) -->
+                <div class="poster-rail-group">
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/ad/31/92/ad3192e9ac6169a2614d932ded3b54e6.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card tall"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/control1/736x/95/04/5f/95045fafecf5a86dbf704012906fb91b.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/3a/03/6a/3a036a16477e9d64e309734792c740e3.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card tall"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/f8/82/bd/f882bd2d5ead41a09966ad81c292f1e5.jpg"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="infotech.html"
+                    class="poster-card"
+                    style="--card-accent: #1f66cc"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                      alt="Arshith Infotech"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Infotech</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rail 2 (Down) -->
+            <div class="poster-rail down" style="--rail-duration: 32s">
+              <div class="poster-rail-track">
+                <!-- Group 1 -->
+                <div class="poster-rail-group">
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/1a/3e/1d/1a3e1d27f7a3f935f4b9f5856a137e5e.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/4d/ae/9d/4dae9de3f44d4ca5d0aefd8f6ee845ab.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/ec/ca/29/ecca299ee395018aab53b0542f4a0800.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/control1/1200x/99/ea/f3/99eaf3266c9b01dab3c4c3eaae82fb17.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/b4/d8/d6/b4d8d6c31de1bfd17e52fa4041f79f77.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Group 2 (Repeat for Loop) -->
+                <div class="poster-rail-group">
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/1a/3e/1d/1a3e1d27f7a3f935f4b9f5856a137e5e.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/4d/ae/9d/4dae9de3f44d4ca5d0aefd8f6ee845ab.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/ec/ca/29/ecca299ee395018aab53b0542f4a0800.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/control1/1200x/99/ea/f3/99eaf3266c9b01dab3c4c3eaae82fb17.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://arshithfresh.com/"
+                    class="poster-card"
+                    style="--card-accent: #6fc97e"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/b4/d8/d6/b4d8d6c31de1bfd17e52fa4041f79f77.jpg"
+                      alt="Arshith Fresh"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Arshith Fresh</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rail 3 (Up) -->
+            <div class="poster-rail up" style="--rail-duration: 30s">
+              <div class="poster-rail-track">
+                <!-- Group 1 -->
+                <div class="poster-rail-group">
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/99/4f/4a/994f4af2fa7dd601b53b467685a2a63e.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/b5/03/09/b50309a02f54651f7262e56e66a7926f.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/20/5b/7b/205b7b120ba93a1b47a7856749ac02a7.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/68/90/1f/68901f537a558b237c938aebd73adab4.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/c7/46/31/c746310b6a6f3de2f4658d3e535bc4c3.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Group 2 (Repeat for Loop) -->
+                <div class="poster-rail-group">
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/99/4f/4a/994f4af2fa7dd601b53b467685a2a63e.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/b5/03/09/b50309a02f54651f7262e56e66a7926f.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/20/5b/7b/205b7b120ba93a1b47a7856749ac02a7.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card tall"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/1200x/68/90/1f/68901f537a558b237c938aebd73adab4.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                  <a
+                    href="https://suntechorganization.com/"
+                    class="poster-card"
+                    style="--card-accent: #d7b96c"
+                  >
+                    <img
+                      class="poster-card-image"
+                      src="https://i.pinimg.com/736x/c7/46/31/c746310b6a6f3de2f4658d3e535bc4c3.jpg"
+                      alt="Suntech Solutions"
+                    />
+                    <div class="poster-card-copy">
+                      <h3>Suntech Solutions</h3>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Evolution Timeline Section -->
+    <section class="timeline-section" id="journey">
+      <div class="timeline-container">
+        <!-- Header -->
+        <div class="timeline-header">
+          <span class="timeline-eyebrow">Our Journey</span>
+          <h2 class="timeline-title">Tracing Our Evolution</h2>
+          <p class="timeline-desc">
+            From a humble visionary concept to a leading multi-sector corporate
+            brand, see how we have scaled our services over the years.
+          </p>
+        </div>
+
+        <!-- Timeline Path -->
+        <div class="timeline-path">
+          <!-- Background vertical bar line -->
+          <div class="bg-line"></div>
+          <!-- Active progress bar line animated by GSAP -->
+          <div class="progress-line" id="progressLine"></div>
+
+          <!-- Milestone 2019 -->
+          <div class="milestone-item left-side">
+            <div class="node-wrapper">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-year">2019</span>
+              <h3 class="timeline-card-title">Suntech Solutions Evolution</h3>
+              <p class="timeline-card-desc">
+                Laying the foundation of the group by establishing Suntech Solutions,
+                focusing on business consulting, corporate services, and operational
+                optimization to empower early enterprise growth.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2021 -->
+          <div class="milestone-item right-side">
+            <div class="node-wrapper">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-year">2021</span>
+              <h3 class="timeline-card-title">Suntech Expansion with Backend Support</h3>
+              <p class="timeline-card-desc">
+                Expanded Suntech Solutions' service portfolio to offer robust
+                backend support, administration management, and initial digital
+                marketing solutions to help clients streamline remote operations.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2023 -->
+          <div class="milestone-item left-side">
+            <div class="node-wrapper">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-year">2023</span>
+              <h3 class="timeline-card-title">Arshith Group Evolution.</h3>
+              <p class="timeline-card-desc">
+                Consolidating our expanding service operations and consulting divisions under a
+                unified corporate identity, establishing a strong foundation for long-term multi-sector
+                growth and sustainable business development.
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2025 -->
+          <div class="milestone-item right-side">
+            <div class="node-wrapper">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-year">2025</span>
+              <h3 class="timeline-card-title">Arshith Fresh India Pvt Ltd Inauaguration</h3>
+              <p class="timeline-card-desc">
+                Officially incorporating and inaugurating Arshith Fresh India Pvt Ltd, establishing
+                our flagship e-commerce platform to connect farmers directly with consumers. 
+              </p>
+            </div>
+          </div>
+
+          <!-- Milestone 2026 -->
+          <div class="milestone-item left-side">
+            <div class="node-wrapper">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-year">2026</span>
+              <h3 class="timeline-card-title">Arshith Info-Tech Expansion.</h3>
+              <p class="timeline-card-desc">
+                Scaling our technical capabilities globally, offering comprehensive software solutions,
+                advanced cloud architectures, and digital transformations to enterprise-grade clients.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- New Section: Partner with Arshith AI Tech -->
+    <section class="partner-ai-section" id="partner-ai">
+      <!-- Background Video Loop -->
+      <div class="partner-video-bg">
+        <video loop muted playsinline preload="none" class="partner-bg-video">
+          <source src="logos/277093_medium.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="partner-video-overlay"></div>
+      </div>
+
+      <!-- <div class="partner-ai-container">
+                <div class="partner-ai-glass-card">
+                    <span class="tracking-tag">COLLABORATION</span>
+                    <h2 class="partner-ai-title">Partner with <span class="highlight">Arshith <span class="animated-ai-text">AI</span> Tech</span></h2>
+                    <p class="partner-ai-desc">Unleash the power of cognitive computing. In strategic collaboration with Arshith AI Tech, we deliver cutting-edge artificial intelligence, custom deep learning pipelines, and predictive analytics that supercharge enterprise growth. Enhance your decision-making workflows and drive digital transformation with our robust, intelligent software ecosystem.</p>
+                    <div class="partner-ai-actions">
+                        <a href="#contact" class="btn-contact">Explore AI Ecosystem</a>
+                    </div>
+                </div>
+            </div> -->
+    </section>
+
+    <!-- Infinite Scrolling Operational Gallery -->
+    <section
+      id="operational-gallery"
+      class="section"
+      style="
+        background-color: #ffffff;
+        padding: 80px 0;
+        border-bottom: 1px solid #f1f5f9;
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <style>
+        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+        /* ── Marquee Engine (mirrors marquee.tsx exactly) ── */
+        .og-marquee {
+          display: flex;
+          overflow: hidden;
+          padding: 0.5rem;
+          --duration: 50s;
+          --gap: 1.5rem;
+          gap: var(--gap);
+        }
+        .og-marquee-track {
+          display: flex;
+          flex-shrink: 0;
+          justify-content: space-around;
+          gap: var(--gap);
+          animation: og-marquee-slide var(--duration) linear infinite;
+        }
+        .og-marquee-track.reverse {
+          animation-direction: reverse;
+        }
+        @keyframes og-marquee-slide {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% - var(--gap)));
+          }
+        }
+
+        /* ── Image Cards ── */
+        .og-card {
+          width: 20rem;
+          height: 15rem;
+          border-radius: 1rem;
+          overflow: hidden;
+          border: 1px solid #f1f5f9;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+          position: relative;
+          flex-shrink: 0;
+          transition: transform 0.3s ease;
+        }
+        .og-card:hover {
+          transform: scale(1.02);
+        }
+        .og-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+        .og-card:hover img {
+          transform: scale(1.05);
+        }
+        .og-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.45),
+            transparent 60%
+          );
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+        .og-card:hover .og-card-overlay {
+          opacity: 1;
+        }
+
+        /* ── Fade Edges ── */
+        .og-fade-left,
+        .og-fade-right {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 8%;
+          pointer-events: none;
+          z-index: 10;
+        }
+        .og-fade-left {
+          left: 0;
+          background: linear-gradient(to right, #ffffff, transparent);
+        }
+        .og-fade-right {
+          right: 0;
+          background: linear-gradient(to left, #ffffff, transparent);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 767px) {
+          .og-card {
+            width: 18rem;
+            height: 13rem;
+          }
+          #operational-gallery {
+            padding: 50px 0;
+          }
+        }
+      </style>
+
+      <!-- Header -->
+      <div class="container" style="margin-bottom: 3rem">
+        <div style="max-width: 48rem">
+          <div
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 0.9rem;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: #c9943c;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            "
+          >
+            <i
+              class="fa-solid fa-image"
+              style="color: #059669; font-size: 0.8rem"
+            ></i>
+            Operational Gallery
+          </div>
+          <h2
+            style="
+              font-family: &quot;Cormorant Garamond&quot;, Georgia, serif;
+              font-size: 2.8rem;
+              font-weight: 600;
+              color: #0f172a;
+              line-height: 1.2;
+              margin-top: 1rem;
+              letter-spacing: -0.01em;
+            "
+          >
+            Arshith Group in
+            <span style="font-style: italic; font-weight: 500; color: #059669"
+              >Action</span
+            >
+          </h2>
+          <p
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 1.05rem;
+              color: #64748b;
+              line-height: 1.7;
+              margin-top: 1rem;
+              max-width: 40rem;
+            "
+          >
+            A visual chronicle of our South Indian agricultural logistics hubs,
+            software engineering workspaces, solar cold storages, and local
+            grower collaborations.
+          </p>
+        </div>
+      </div>
+
+      <!-- Marquee Console -->
+      <div
+        style="
+          position: relative;
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          gap: 1.5rem;
+          align-items: center;
+          overflow: hidden;
+          padding: 1rem 0;
+          user-select: none;
+        "
+      >
+        <!-- Row 1: Forward -->
+        <div class="og-marquee" style="width: 100%">
+          <!-- Track 1 -->
+          <div class="og-marquee-track">
+            <div class="og-card">
+              <img src="./marque/01.jpeg" alt="Operations 1" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/02.jpeg" alt="Operations 2" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/03.jpeg" alt="Operations 3" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/04.jpeg" alt="Operations 4" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/05.jpeg" alt="Operations 5" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/06.jpeg" alt="Operations 6" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/07.jpeg" alt="Operations 7" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/08.jpeg" alt="Operations 8" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/09.jpeg" alt="Operations 9" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/10.jpeg" alt="Operations 10" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+          <!-- Track 2 -->
+          <div class="og-marquee-track">
+            <div class="og-card">
+              <img src="./marque/01.jpeg" alt="Operations 1" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/02.jpeg" alt="Operations 2" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/03.jpeg" alt="Operations 3" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/04.jpeg" alt="Operations 4" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/05.jpeg" alt="Operations 5" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/06.jpeg" alt="Operations 6" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/07.jpeg" alt="Operations 7" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/08.jpeg" alt="Operations 8" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/09.jpeg" alt="Operations 9" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/10.jpeg" alt="Operations 10" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+          <!-- Track 3 -->
+          <div class="og-marquee-track">
+            <div class="og-card">
+              <img src="./marque/01.jpeg" alt="Operations 1" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/02.jpeg" alt="Operations 2" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/03.jpeg" alt="Operations 3" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/04.jpeg" alt="Operations 4" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/05.jpeg" alt="Operations 5" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/06.jpeg" alt="Operations 6" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/07.jpeg" alt="Operations 7" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/08.jpeg" alt="Operations 8" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/09.jpeg" alt="Operations 9" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/10.jpeg" alt="Operations 10" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Reverse -->
+        <div class="og-marquee" style="width: 100%">
+          <!-- Track 1 -->
+          <div class="og-marquee-track reverse">
+            <div class="og-card">
+              <img src="./marque/11.jpeg" alt="Operations 11" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/12.jpeg" alt="Operations 12" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/13.jpeg" alt="Operations 13" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/14.jpeg" alt="Operations 14" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/15.jpeg" alt="Operations 15" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/16.jpeg" alt="Operations 16" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/17.jpeg" alt="Operations 17" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/18.jpeg" alt="Operations 18" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/19.jpeg" alt="Operations 19" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/20.jpeg" alt="Operations 20" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+          <!-- Track 2 -->
+          <div class="og-marquee-track reverse">
+            <div class="og-card">
+              <img src="./marque/11.jpeg" alt="Operations 11" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/12.jpeg" alt="Operations 12" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/13.jpeg" alt="Operations 13" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/14.jpeg" alt="Operations 14" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/15.jpeg" alt="Operations 15" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/16.jpeg" alt="Operations 16" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/17.jpeg" alt="Operations 17" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/18.jpeg" alt="Operations 18" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/19.jpeg" alt="Operations 19" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/20.jpeg" alt="Operations 20" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+          <!-- Track 3 -->
+          <div class="og-marquee-track reverse">
+            <div class="og-card">
+              <img src="./marque/11.jpeg" alt="Operations 11" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/12.jpeg" alt="Operations 12" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/13.jpeg" alt="Operations 13" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/14.jpeg" alt="Operations 14" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/15.jpeg" alt="Operations 15" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/16.jpeg" alt="Operations 16" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/17.jpeg" alt="Operations 17" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/18.jpeg" alt="Operations 18" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/19.jpeg" alt="Operations 19" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+            <div class="og-card">
+              <img src="./marque/20.jpeg" alt="Operations 20" loading="lazy" />
+              <div class="og-card-overlay"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lateral Fade overlays -->
+        <div class="og-fade-left"></div>
+        <div class="og-fade-right"></div>
+      </div>
+    </section>
+
+    <!-- ══════════ CAREERS ══════════ -->
+    <section class="ag-careers" id="careers">
+      <div class="container">
+        <div class="ag-careers-head">
+          <h2 class="ag-section-title">Join Us</h2>
+          <a href="#" class="ag-btn ag-btn--solid-dark"
+            >Know More <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="ag-careers-grid">
+          <div
+            class="ag-career-card"
+            style="background-image: url(&quot;job oppurtunity.jpg&quot;)"
+          >
+            <div class="ag-career-overlay"></div>
+            <div class="ag-career-body">
+              <h4>Job Opportunities</h4>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          <div
+            class="ag-career-card"
+            style="background-image: url(&quot;values.jpg&quot;)"
+          >
+            <div class="ag-career-overlay"></div>
+            <div class="ag-career-body">
+              <h4>Our Values</h4>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          <div
+            class="ag-career-card"
+            style="background-image: url(&quot;work-culture.jpg&quot;)"
+          >
+            <div class="ag-career-overlay"></div>
+            <div class="ag-career-body">
+              <h4>Life at Arshith</h4>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+          <div
+            class="ag-career-card"
+            style="
+              background-image: url(&quot;Internship-and-Training-1024x536(1).png&quot;);
+            "
+          >
+            <div class="ag-career-overlay"></div>
+            <div class="ag-career-body">
+              <h4>Internships</h4>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section class="ag-contact" id="contact">
+      <div class="container">
+        <!-- Centered heading -->
+        <div class="ag-contact-heading">
+          <span class="ag-contact-eyebrow">Get In Touch</span>
+          <h2 class="ag-contact-title">Contact Us</h2>
+          <p class="ag-contact-sub">
+            Have a question or want to work with us? Reach out and our team will
+            get back to you shortly.
+          </p>
+        </div>
+
+        <!-- Centered form -->
+        <div class="ag-contact-form-wrap">
+          <form class="ag-contact-form" id="agContactForm" novalidate>
+            <div class="ag-form-row">
+              <div class="ag-form-group">
+                <label for="contactName">Full Name</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  placeholder="Arshith "
+                  required
+                />
+              </div>
+              <div class="ag-form-group">
+                <label for="contactEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  placeholder="arshith@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="ag-form-row">
+              <div class="ag-form-group">
+                <label for="contactPhone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="contactPhone"
+                  name="phone"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div class="ag-form-group">
+                <label for="contactSubject">Subject</label>
+                <select id="contactSubject" name="subject">
+                  <option value="" disabled selected>Select a topic</option>
+                  <option value="careers">Careers &amp; Jobs</option>
+                  <option value="internship">Internship</option>
+                  <option value="business">Business Enquiry</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="ag-form-group">
+              <label for="contactMsg">Message</label>
+              <textarea
+                id="contactMsg"
+                name="message"
+                rows="5"
+                placeholder="Write your message here…"
+                required
+              ></textarea>
+            </div>
+            <div class="ag-form-submit-row">
+              <button type="submit" class="ag-form-btn">
+                Send Message <i class="fa-solid fa-paper-plane"></i>
+              </button>
+              <p class="ag-form-success" id="agFormSuccess">
+                ✅ Thank you! We'll get back to you soon.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="ag-footer" id="footer">
+      <div class="container ag-footer-inner">
+        <div class="ag-footer-brand">
+          <a href="#"
+            ><img
+              src="./logos/LOGO-removebg-preview.png"
+              alt="Arshith Group Logo"
+              class="ag-footer-logo-img"
+          /></a>
+          <p>
+            Arshith Group is committed to innovation, sustainability, and
+            excellence across multiple industries including E-Commerce,
+            Technology, and Digital Services. We empower communities and deliver
+            trusted solutions.
+          </p>
+          <div class="ag-footer-social">
+            <a
+              href="https://www.linkedin.com/in/farook-n-2bb2b5344/"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/arshith-fresh-india-pvt-ltd/posts/?feedView=all"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/pallavi-n-4578033ab/"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/suntech-it-solution/"
+              aria-label="LinkedIn"
+              ><i class="fa-brands fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/npallavi_arshith?igsh=MXVxeWViejE3eHJsdg=="
+              aria-label="Instagram"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+            <a
+              href="https://youtube.com/@vamikadurbar?si=mvXxo3HM8Qe4liD9"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a
+              href="https://youtube.com/@arshithfresh?si=ZjvzneHlriAxv322"
+              aria-label="Instagram"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+        <div class="ag-footer-cols">
+          <div class="ag-footer-col">
+            <h5>About Us</h5>
+            <ul>
+              <li><a href="#">About Arshith Group</a></li>
+              <li><a href="#">CEO Office</a></li>
+              <li><a href="#">Leadership</a></li>
+              <li><a href="#">Our Journey</a></li>
+              <li><a href="#">Awards</a></li>
+            </ul>
+          </div>
+          <div class="ag-footer-col">
+            <h5>Businesses</h5>
+            <ul>
+              <li><a href="#">E-Commerce</a></li>
+              <li><a href="#">Business Consulting &amp; Services </a></li>
+              <li><a href="#">Digital &amp; Marketing</a></li>
+              <li><a href="#">Software Development</a></li>
+            </ul>
+          </div>
+          <div class="ag-footer-col">
+            <h5>Connect</h5>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="ag-footer-col">
+            <h5>Need Help?</h5>
+            <ul style="gap: 15px">
+              <li style="display: flex; align-items: flex-start; gap: 10px">
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="
+                    margin-top: 4px;
+                    color: transparent;
+                    -webkit-text-stroke: 1.5px #555;
+                  "
+                ></i>
+                <span style="font-size: 0.88rem; color: #666"
+                  >Bengaluru, Karnataka, India - 560076</span
+                >
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px">
+                <i
+                  class="fa-solid fa-phone"
+                  style="color: transparent; -webkit-text-stroke: 1.5px #555"
+                ></i>
+                <span style="font-size: 0.88rem; color: #666"
+                  >+91 8618471424</span
+                >
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px">
+                <i class="fa-regular fa-envelope" style="color: #555"></i>
+                <span style="font-size: 0.88rem; color: #666"
+                  >info@arshithgroup.com</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Background Beetle & Cyclist -->
+      <div class="footer_bg">
+        <div class="footer_bg_one">
+          <div class="car-logo">Let’s start with Arshith<span>.</span></div>
+        </div>
+        <div class="footer_bg_two"><div class="cyclist-logo">Others</div></div>
+      </div>
+
+      <div class="ag-footer-bottom">
+        <div class="container ag-footer-bottom-inner">
+          <p>&copy; 2026 Arshith Group. All rights reserved.</p>
+          <div class="ag-footer-legal">
+            <a href="#">Legal Disclaimer</a>
+            <a href="#">Privacy Notice</a>
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+          <button class="ag-back-top" id="agBackTop" aria-label="Back to top">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+      // Timeline animations are handled in the DOMContentLoaded block below.
+      // (Duplicate block removed to prevent competing ScrollTrigger instances.)
+
+      // INIT
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const l = document.getElementById("loader");
+          if (l) {
+            l.classList.add("gone");
+            setTimeout(() => l.remove(), 700);
+          }
+        }, 2700);
+      });
+
+      // SCROLL PROGRESS
+      window.addEventListener("scroll", () => {
+        const t = document.documentElement;
+        const pbar = document.getElementById("pbar");
+        if (pbar) {
+          pbar.style.width =
+            (t.scrollTop / (t.scrollHeight - t.clientHeight)) * 100 + "%";
+        }
+      });
+
+      // Scroll Reveal Animation
+      const reveals = document.querySelectorAll(
+        ".section, .card, .product-card, .category-card, .news-card, .limited-card, .business-feature, .quote-card",
+      );
+
+      // Add reveal class to all
+      reveals.forEach((el) => el.classList.add("reveal"));
+
+      function revealOnScroll() {
+        const windowHeight = window.innerHeight;
+        const revealPoint = 100;
+
+        reveals.forEach((el) => {
+          const elementTop = el.getBoundingClientRect().top;
+
+          if (elementTop < windowHeight - revealPoint) {
+            el.classList.add("active");
+          } else {
+            el.classList.remove("active"); // remove if you want repeat animation
+          }
+        });
+      }
+
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+    <script>
+      (function () {
+        // ── Sticky header shadow ──
+        const header = document.getElementById("agHeader");
+        window.addEventListener("scroll", function () {
+          header.classList.toggle("ag-header--scrolled", window.scrollY > 50);
+        });
+
+        // ── Hamburger / mobile nav ──
+        document
+          .getElementById("agHamburger")
+          .addEventListener("click", function () {
+            document
+              .getElementById("agNavLinks")
+              .classList.toggle("ag-nav-open");
+            this.classList.toggle("ag-ham-open");
+          });
+
+        // ── Back to top ──
+        document
+          .getElementById("agBackTop")
+          .addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+
+        // ── Mobile Dropdowns ──
+        document.querySelectorAll(".ag-has-drop > a").forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            if (window.innerWidth <= 900) {
+              const parent = this.parentElement;
+              if (!parent.classList.contains("ag-drop-open")) {
+                e.preventDefault();
+                document
+                  .querySelectorAll(".ag-has-drop")
+                  .forEach(function (item) {
+                    item.classList.remove("ag-drop-open");
+                  });
+                parent.classList.add("ag-drop-open");
+              }
+            }
+          });
+        });
+      })();
+    </script>
+
+    <!-- GSAP and ScrollTrigger CDN Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Run animation logic after scripts load
+      window.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector(".timeline-section");
+        const progressLine = document.getElementById("progressLine");
+
+        if (!container || !progressLine) return;
+
+        // Progress line height linked directly to scroll position
+        gsap.fromTo(
+          progressLine,
+          { height: "0%" },
+          {
+            height: "100%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: container,
+              start: "top 60%",
+              end: "bottom 70%",
+              scrub: 1.5,
+            },
+          },
+        );
+
+        // Light up milestone nodes and trigger card entries
+        const milestoneItems = document.querySelectorAll(".milestone-item");
+        milestoneItems.forEach((el, index) => {
+          const dot = el.querySelector(".timeline-dot");
+          const card = el.querySelector(".timeline-card");
+
+          if (!dot || !card) return;
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: el,
+              start: "top 65%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          tl.to(dot, {
+            backgroundColor: "#2563eb",
+            borderColor: "#60a5fa",
+            scale: 1.3,
+            duration: 0.4,
+          }).fromTo(
+            card,
+            {
+              opacity: 0,
+              x: index % 2 === 0 ? -40 : 40,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+            "-=0.2",
+          );
+        });
+
+        // --- Video plays only when Partner AI section scrolls into view ---
+        const bgVideos = document.querySelectorAll(".partner-video-bg video");
+
+        const videoObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const video = entry.target.querySelector("video");
+              if (!video) return;
+
+              if (entry.isIntersecting) {
+                video
+                  .play()
+                  .catch((err) => console.log("Video play prevented:", err));
+              } else {
+                video.pause();
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+          },
+        );
+
+        bgVideos.forEach((video) => {
+          // Don't auto-play; let the observer handle it
+          video.pause();
+          const section = video.closest("section");
+          if (section) {
+            videoObserver.observe(section);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

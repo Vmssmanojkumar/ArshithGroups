@@ -1,0 +1,377 @@
+/* ============================================================
+   HOME PAGE — page-specific styles extracted from index.html
+   ============================================================ */
+
+/* ── Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+/* ── Root tokens ── */
+:root {
+  --comp-bg-soft: linear-gradient(
+    180deg,
+    rgba(246, 249, 255, 0.98),
+    rgba(242, 244, 255, 0.96)
+  );
+  --comp-text: #0f172a;
+  --comp-muted: #475569;
+  --comp-border: rgba(0, 0, 0, 0.08);
+  --comp-font-heading: "Outfit", sans-serif;
+  --comp-font-body: "Inter", sans-serif;
+  --comp-accent: #2563eb;
+}
+
+/* ════════════════════════════════
+   COMPANIES SHOWCASE SECTION
+   ════════════════════════════════ */
+.home-company-section {
+  background: var(--comp-bg-soft);
+  padding: 80px 0;
+  border-radius: 40px;
+  margin: 40px 0;
+  border: 1px solid var(--comp-border);
+}
+
+.home-company-section .section-heading {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.home-company-section .section-tag {
+  font-family: var(--comp-font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--comp-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.home-company-section .section-heading h2 {
+  font-family: var(--comp-font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--comp-text);
+  line-height: 1.15;
+}
+
+.home-company-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 1.15fr);
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.home-company-image-panel {
+  display: flex;
+  justify-content: center;
+}
+
+.home-company-image-card {
+  width: min(100%, 500px);
+  padding: 1.2rem;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(206, 217, 230, 0.9);
+  box-shadow: 0 24px 54px rgba(12, 43, 73, 0.06);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.home-company-image-card:hover {
+  transform: translateY(-4px);
+}
+
+.home-company-image-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* ════════════════════════════════
+   SCROLLING POSTER WALL
+   ════════════════════════════════ */
+.poster-wall {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  align-items: center;
+  height: 650px;
+  padding: 0.6rem;
+  overflow: hidden;
+}
+
+.poster-rail {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(159, 194, 244, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.poster-rail-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.poster-rail-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.poster-rail.up .poster-rail-track {
+  animation: railUp var(--rail-duration) linear infinite;
+}
+
+.poster-rail.down .poster-rail-track {
+  animation: railDown var(--rail-duration) linear infinite;
+}
+
+.poster-card {
+  position: relative;
+  flex-shrink: 0;
+  min-height: 140px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 30px rgba(4, 8, 18, 0.12);
+  background: #0c1020;
+  transform: translateZ(0);
+  display: block;
+  text-decoration: none;
+}
+
+.poster-card.tall {
+  min-height: 200px;
+}
+
+.poster-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 0.45s ease;
+}
+
+.poster-card:hover .poster-card-image {
+  transform: scale(1.08);
+}
+
+.poster-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 14, 26, 0.02) 0%,
+      rgba(10, 14, 26, 0.65) 100%
+    ),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.25) 0%, transparent 60%);
+  z-index: 1;
+}
+
+.poster-card-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0.95rem;
+  color: #fff;
+}
+
+.poster-card-copy h3 {
+  font-family: var(--comp-font-heading);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.poster-card-copy p {
+  margin-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+@keyframes railUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+@keyframes railDown {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+
+/* ════════════════════════════════
+   OPERATIONAL GALLERY MARQUEE
+   ════════════════════════════════ */
+.og-marquee {
+  display: flex;
+  overflow: hidden;
+  padding: 0.5rem;
+  --duration: 50s;
+  --gap: 1.5rem;
+  gap: var(--gap);
+}
+
+.og-marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  gap: var(--gap);
+  animation: og-marquee-slide var(--duration) linear infinite;
+}
+
+.og-marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+@keyframes og-marquee-slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% - var(--gap))); }
+}
+
+/* ── Image Cards ── */
+.og-card {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.og-card:hover {
+  transform: scale(1.02);
+}
+
+.og-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.og-card:hover img {
+  transform: scale(1.05);
+}
+
+.og-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.45),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.og-card:hover .og-card-overlay {
+  opacity: 1;
+}
+
+/* ── Fade Edges ── */
+.og-fade-left,
+.og-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.og-fade-left {
+  left: 0;
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.og-fade-right {
+  right: 0;
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+/* ════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════ */
+@media (max-width: 992px) {
+  .home-company-showcase {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .home-company-image-card {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .poster-wall {
+    height: 550px;
+    padding: 0.3rem;
+    gap: 0.6rem;
+  }
+
+  .poster-card {
+    min-height: 120px;
+  }
+
+  .poster-card.tall {
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 767px) {
+  .og-card {
+    width: 18rem;
+    height: 13rem;
+  }
+
+  #operational-gallery {
+    padding: 50px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-company-section {
+    padding: 40px 0;
+    border-radius: 24px;
+  }
+
+  .poster-wall {
+    height: 450px;
+    gap: 0.45rem;
+  }
+
+  .poster-card {
+    min-height: 100px;
+    border-radius: 14px;
+  }
+
+  .poster-card.tall {
+    min-height: 140px;
+  }
+}

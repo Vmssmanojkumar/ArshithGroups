@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info-tech | Empowering Digital Transformation</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="footer-premium.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-logo">Arshith&nbsp;<span class="logo-tech">Info-Tech</span><span class="logo-dot">.</span></div>
+    <div class="preloader-spinner"></div>
+  </div>
+
+
+
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">
+        Arshith&nbsp;<span class="logo-tech">Info-Tech</span><span class="logo-dot">.</span>
+      </a>
+      <ul class="nav-links">
+        <div class="drawer-brand">Arshith&nbsp;<span class="logo-tech">Info-Tech</span><span class="logo-dot">.</span></div>
+        <button class="drawer-close" aria-label="Close menu"><i class="fas fa-times"></i></button>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="about-infotech.html">About Us</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Contact Us</a>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="menuOverlay"></div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <!-- Particle canvas -->
+    <canvas id="heroParticles"></canvas>
+    <!-- Animated background shapes -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Empowering Your <br><span class="typewriter" data-words='["Digital Future", "Business Growth", "Global Innovation"]'></span></h1>
+        <p class="hero-subtitle">We deliver innovative IT solutions that drive growth, enhance security, and transform businesses for the digital age.</p>
+        <div class="hero-cta">
+          <a href="#services" class="btn btn-primary">Discover Solutions</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-image floating-hero-img">
+        <div class="ken-burns-wrapper">
+          <img src="assets/images/hero-office.png" alt="IT Professionals collaborating">
+        </div>
+        <div class="floating-card">
+          <div class="floating-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <h4 style="color: var(--text-main); font-weight: 700;">99.9%</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Uptime Guaranteed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Who We Are Section -->
+  <section id="about" class="section-padding">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content reveal-left">
+          <h4 class="section-badge">Who We Are</h4>
+          <h2 class="section-title">Supercharging Progress</h2>
+          <p class="about-desc">We are a next-generation global technology company that helps enterprises reimagine their businesses for the digital age. Our technology products, services, and engineering are built on decades of innovation, with a world-renowned management philosophy, a strong culture of invention and risk-taking, and a relentless focus on customer relationships.</p>
+          <ul class="about-list">
+            <li><i class="fas fa-check-circle text-primary"></i> <strong>Innovation-Driven:</strong> Pioneering solutions in AI, Cloud, and Cyber.</li>
+            <li><i class="fas fa-check-circle text-primary"></i> <strong>Client-Centric:</strong> A relentless focus on delivering value.</li>
+            <li><i class="fas fa-check-circle text-primary"></i> <strong>Global Reach:</strong> Operating across 40+ countries.</li>
+          </ul>
+          <a href="about-infotech.html" class="btn btn-primary mt-4">Learn More About Us</a>
+        </div>
+        <div class="about-image reveal-right">
+          <img src="assets/images/tech-abstract.png" alt="Technology Abstract" class="rounded-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section-padding bg-alt">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h2 class="section-title">Our Core Capabilities</h2>
+        <p class="section-subtitle">Comprehensive technology solutions tailored to your unique business challenges.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal-scale delay-100" data-modal="digital-transformation">
+          <i class="fas fa-laptop-code service-icon"></i>
+          <h3>Digital Transformation</h3>
+          <p>Leveraging AI, analytics, and cloud technologies to modernize business processes and enhance customer engagement.</p>
+          <span class="card-learn"><i class="fas fa-arrow-right"></i> Learn more</span>
+        </div>
+        <div class="service-card reveal-scale delay-200" data-modal="cloud-computing">
+          <i class="fas fa-cloud service-icon"></i>
+          <h3>Cloud Computing</h3>
+          <p>Comprehensive cloud migration, hybrid/multi-cloud management, and cloud-native services for scalable infrastructure.</p>
+          <span class="card-learn"><i class="fas fa-arrow-right"></i> Learn more</span>
+        </div>
+        <div class="service-card reveal-scale delay-300" data-modal="engineering-rd">
+          <i class="fas fa-cogs service-icon"></i>
+          <h3>Engineering & R&D</h3>
+          <p>Accelerating the product development lifecycle with platforms, automation solutions, and specialized IoT expertise.</p>
+          <span class="card-learn"><i class="fas fa-arrow-right"></i> Learn more</span>
+        </div>
+        <div class="service-card reveal-scale delay-400" data-modal="enterprise-software">
+          <i class="fas fa-cubes service-icon"></i>
+          <h3>Enterprise Software</h3>
+          <p>Portfolio of enterprise-grade software products covering Customer Experience, DevSecOps, and intelligent automation.</p>
+          <span class="card-learn"><i class="fas fa-arrow-right"></i> Learn more</span>
+        </div>
+        <div class="service-card reveal-scale delay-500" data-modal="infrastructure-mgmt">
+          <i class="fas fa-network-wired service-icon"></i>
+          <h3>Infrastructure Mgmt</h3>
+          <p>Managing complex IT environments, data centers, and advanced cybersecurity to ensure operational efficiency and security.</p>
+          <span class="card-learn"><i class="fas fa-arrow-right"></i> Learn more</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Section -->
+  <section id="industries" class="section-padding">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h4 class="section-badge">Industries We Serve</h4>
+        <h2 class="section-title">Domain Expertise</h2>
+        <p class="section-subtitle">Delivering tailored technology solutions across major global industries.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card reveal-up delay-100" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800');">
+          <div class="industry-overlay">
+            <h3>Financial Services</h3>
+            <p>Driving digital banking and fintech innovation.</p>
+          </div>
+        </div>
+        <div class="industry-card reveal-up delay-200" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800');">
+          <div class="industry-overlay">
+            <h3>Healthcare</h3>
+            <p>Transforming patient care with digital health.</p>
+          </div>
+        </div>
+        <div class="industry-card reveal-up delay-300" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800');">
+          <div class="industry-overlay">
+            <h3>Manufacturing</h3>
+            <p>Industry 4.0 and smart supply chains.</p>
+          </div>
+        </div>
+        <div class="industry-card reveal-up delay-400" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800');">
+          <div class="industry-overlay">
+            <h3>Retail & CPG</h3>
+            <p>Enhancing customer experiences and omnichannel commerce.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Careers Section -->
+  <section id="careers" class="careers-section">
+    <div class="container reveal-scale">
+      <div class="careers-content text-center">
+        <h2>Find Your Spark</h2>
+        <p>Join a global network of innovators, creators, and problem solvers. Build a career that supercharges your potential and shapes the future of technology.</p>
+        <a href="#contact" class="btn btn-primary mt-4">Explore Opportunities</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats/Impact Section -->
+  <section id="stats" class="stats">
+    <div class="container reveal-up">
+      <div class="stat-item">
+        <h4 class="counter" data-target="8">0</h4>
+        <p>Years of Excellence</p>
+      </div>
+      <div class="stat-item">
+        <h4><span class="counter" data-target="20">0</span>+</h4>
+        <p>Global Clients</p>
+      </div>
+      <div class="stat-item">
+        <h4><span class="counter" data-target="100">0</span>+</h4>
+        <p>IT Professionals</p>
+      </div>
+      <!-- <div class="stat-item">
+        <h4 class="counter" data-target="40">0</h4>
+        <p>Countries Operated</p>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Why Info-tech Section -->
+  <section id="why-us" class="section-padding">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h4 class="section-badge">Why Choose Us</h4>
+        <h2 class="section-title">What Sets Info-tech Apart</h2>
+        <p class="section-subtitle">We don't just deliver technology — we deliver outcomes that transform how businesses compete and grow.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal-left delay-100">
+          <div class="why-icon"><i class="fas fa-rocket"></i></div>
+          <h3>Outcome-First Approach</h3>
+          <p>Every engagement is measured by real business results — not hours logged. We align our success completely with yours.</p>
+        </div>
+        <div class="why-card reveal-up delay-200">
+          <div class="why-icon"><i class="fas fa-users"></i></div>
+          <h3>Dedicated Expert Teams</h3>
+          <p>You get a focused team of specialists — not generalists. Each project is staffed with domain experts who live and breathe your industry.</p>
+        </div>
+        <div class="why-card reveal-up delay-300">
+          <div class="why-icon"><i class="fas fa-lock"></i></div>
+          <h3>Security by Design</h3>
+          <p>Security isn't an add-on — it's built into every line of code, every architecture decision, and every deployment we deliver.</p>
+        </div>
+        <div class="why-card reveal-up delay-400">
+          <div class="why-icon"><i class="fas fa-sync-alt"></i></div>
+          <h3>Agile Delivery</h3>
+          <p>Faster releases, tighter feedback loops. Our agile methodology means you see real progress every sprint — not just at project end.</p>
+        </div>
+        <div class="why-card reveal-up delay-200">
+          <div class="why-icon"><i class="fas fa-headset"></i></div>
+          <h3>24/7 Support</h3>
+          <p>Round-the-clock monitoring and support means your systems stay live — because downtime is not an option in the digital economy.</p>
+        </div>
+        <div class="why-card reveal-right delay-300">
+          <div class="why-icon"><i class="fas fa-leaf"></i></div>
+          <h3>Sustainable Tech</h3>
+          <p>We design energy-efficient architectures and green cloud strategies that reduce your carbon footprint alongside your costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section id="tech-stack" class="section-padding bg-alt">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h4 class="section-badge">Our Technology Stack</h4>
+        <h2 class="section-title">Powered by Industry-Leading Tools</h2>
+        <p class="section-subtitle">We leverage the world's most trusted platforms and frameworks to build solutions that scale.</p>
+      </div>
+      <div class="tech-grid reveal-up delay-100">
+        <div class="tech-badge"><i class="fab fa-aws"></i><span>AWS</span></div>
+        <div class="tech-badge"><i class="fab fa-microsoft"></i><span>Azure</span></div>
+        <div class="tech-badge"><i class="fab fa-google"></i><span>Google Cloud</span></div>
+        <div class="tech-badge"><i class="fab fa-docker"></i><span>Docker</span></div>
+        <div class="tech-badge"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span></div>
+        <div class="tech-badge"><i class="fab fa-react"></i><span>React</span></div>
+        <div class="tech-badge"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+        <div class="tech-badge"><i class="fab fa-python"></i><span>Python</span></div>
+        <div class="tech-badge"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+        <div class="tech-badge"><i class="fab fa-git-alt"></i><span>DevOps & CI/CD</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work Section -->
+  <section id="process" class="section-padding">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h4 class="section-badge">Our Process</h4>
+        <h2 class="section-title">How We Work</h2>
+        <p class="section-subtitle">A structured, transparent engagement model designed to deliver results at every stage.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal-up delay-100">
+          <div class="step-num">01</div>
+          <h3>Discover</h3>
+          <p>We begin by deeply understanding your business goals, pain points, and technical landscape through collaborative workshops.</p>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal-up delay-200">
+          <div class="step-num">02</div>
+          <h3>Design</h3>
+          <p>Our architects craft a tailored solution blueprint — choosing the right technologies, platforms, and delivery approach for your specific needs.</p>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal-up delay-300">
+          <div class="step-num">03</div>
+          <h3>Build</h3>
+          <p>Our expert teams execute with precision using agile sprints, continuous integration, and transparent progress reporting throughout.</p>
+        </div>
+        <div class="process-connector"></div>
+        <div class="process-step reveal-up delay-400">
+          <div class="step-num">04</div>
+          <h3>Scale & Support</h3>
+          <p>Post-launch, we continuously monitor, optimize, and evolve your solution — ensuring it grows alongside your business ambitions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section id="insights" class="section-padding bg-alt">
+    <div class="container">
+      <div class="text-center reveal-up">
+        <h2 class="section-title">Latest Insights</h2>
+        <p class="section-subtitle">Thought leadership, industry analysis, and expert perspectives from our team.</p>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card reveal-left delay-100">
+          <div class="insight-img" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="insight-content">
+            <span class="insight-meta">Artificial Intelligence • May 12, 2026</span>
+            <h3>The Future of Generative AI in the Enterprise</h3>
+            <p>How leading organizations are leveraging generative AI to streamline operations, reduce costs, and create entirely new revenue streams.</p>
+            <div class="insight-author">
+              <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+              <div><strong>Dr. Aisha Patel</strong><br><small>Head of AI Research</small></div>
+            </div>
+            <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="insight-card reveal-up delay-200">
+          <div class="insight-img" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="insight-content">
+            <span class="insight-meta">Cloud Strategy • April 28, 2026</span>
+            <h3>Multi-Cloud in 2026: Strategy Over Complexity</h3>
+            <p>Why the most successful enterprises are consolidating their cloud strategy instead of expanding — and how to get there without disruption.</p>
+            <div class="insight-author">
+              <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+              <div><strong>Marcus Chen</strong><br><small>Principal Cloud Architect</small></div>
+            </div>
+            <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="insight-card reveal-right delay-300">
+          <div class="insight-img" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800');"></div>
+          <div class="insight-content">
+            <span class="insight-meta">Cybersecurity • April 15, 2026</span>
+            <h3>Building a Zero-Trust Architecture That Actually Works</h3>
+            <p>A practical framework for implementing zero-trust security in hybrid environments — without slowing down your engineering teams.</p>
+            <div class="insight-author">
+              <div class="author-avatar"><i class="fas fa-user-circle"></i></div>
+              <div><strong>Priya Ramesh</strong><br><small>Chief Security Officer</small></div>
+            </div>
+            <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h4 class="section-badge">Get In Touch</h4>
+          <h2 class="section-title">Let's Build Something <span style="color: var(--primary);">Great Together</span></h2>
+          <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Whether you're looking to modernize your IT infrastructure, launch a new digital product, or explore AI-driven solutions — we're ready to help you get there.</p>
+          <ul class="contact-details">
+            <li><i class="fas fa-map-marker-alt"></i><div><strong>Office</strong><br>Bengaluru, Karnataka, India - 560076</div></li>
+            <li><i class="fas fa-phone-alt"></i><div><strong>Phone</strong><br>+91 8618471424</div></li>
+            <li><i class="fas fa-envelope"></i><div><strong>Email</strong><br>support@arshith-infotech.com</div></li>
+            <li><i class="fas fa-clock"></i><div><strong>Business Hours</strong><br>Mon – Fri, 10:00 AM – 6:00 PM EST</div></li>
+          </ul>
+        </div>
+        <div class="contact-form-wrap reveal-right">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="Arshith" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Infotech" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input type="email" id="email" placeholder="support@arshith-infotech.com" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input type="text" id="company" placeholder="arshith-infotech">
+            </div>
+            <div class="form-group">
+              <label for="service">Service of Interest</label>
+              <select id="service">
+                <option value="">Select a service...</option>
+                <option>Digital Transformation</option>
+                <option>Cloud Computing</option>
+                <option>Engineering &amp; R&amp;D</option>
+                <option>Data &amp; AI</option>
+                <option>Cybersecurity</option>
+                <option>Infrastructure Management</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="4" placeholder="Tell us about your project or challenge..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+            <p class="form-note"><i class="fas fa-shield-alt"></i> Your information is secure and will never be shared.</p>
+          </form>
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <i class="fas fa-check-circle"></i>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. Our team will contact you within 1 business day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Premium Footer -->
+  <footer class="footer">
+    <div class="footer-newsletter">
+      <div class="container">
+        <div class="newsletter-content">
+          <div class="newsletter-text">
+            <h3>Stay Ahead in Tech</h3>
+            <p>Get the latest insights on AI, Cloud, and Digital Transformation delivered to your inbox.</p>
+          </div>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your business email" required>
+            <button type="submit" class="btn btn-primary">Subscribe <i class="fas fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo footer-logo">
+            Arshith&nbsp;<span class="logo-tech">Info-Tech</span><span class="logo-dot">.</span>
+          </a>
+          <p class="footer-about">Pioneering the future of digital services and consulting. We empower forward-thinking enterprises across 40+ countries to reimagine their business for the digital age.</p>
+          <div class="social-links">
+            <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Capabilities</h4>
+          <ul>
+            <li><a href="#services"><i class="fas fa-angle-right"></i> Cloud Migration</a></li>
+            <li><a href="#services"><i class="fas fa-angle-right"></i> Applied AI & Data</a></li>
+            <li><a href="#services"><i class="fas fa-angle-right"></i> Cybersecurity</a></li>
+            <li><a href="#services"><i class="fas fa-angle-right"></i> Digital Engineering</a></li>
+            <li><a href="#services"><i class="fas fa-angle-right"></i> Enterprise Software</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Organization</h4>
+          <ul>
+            <li><a href="about-infotech.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+            <li><a href="#careers"><i class="fas fa-angle-right"></i> Careers</a></li>
+            <li><a href="#footer"><i class="fas fa-angle-right"></i> Investor Relations</a></li>
+            <li><a href="#footer"><i class="fas fa-angle-right"></i> Global Newsroom</a></li>
+            <li><a href="#footer"><i class="fas fa-angle-right"></i> Sustainability</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contact Us</h4>
+          <ul class="footer-contact-minimal">
+            <li><i class="fas fa-map-marker-alt"></i> Bengaluru, Karnataka, India - 560076</li>
+            <li><i class="fas fa-phone-alt"></i> +91 8618471424</li>
+            <li><i class="fas fa-envelope"></i> support@arshith-infotech.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-flex">
+          <p>&copy; 2026 Arshith Info-Tech. All rights reserved.</p>
+          <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Preferences</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA Button -->
+  <div class="floating-cta" id="floatingCta">
+    <a href="#contact" class="floating-cta-btn" id="floatingCtaBtn">
+      <i class="fas fa-comments"></i>
+      <span>Let's Talk</span>
+    </a>
+  </div>
+
+  <!-- Back to Top -->
+  <button id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Service Modal -->
+  <div id="serviceModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="modal-icon"><i class="fas fa-laptop-code"></i></div>
+      <h2>Service Title</h2>
+      <p class="modal-desc"></p>
+      <ul class="modal-features"></ul>
+      <a href="#contact" class="modal-cta">Get a Free Consultation <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookieBanner" role="alertdialog" aria-label="Cookie consent">
+    <div class="cookie-icon">🍪</div>
+    <div class="cookie-text">
+      <p>We use cookies to enhance your experience and analyze site performance. See our <a href="#">Privacy Policy</a>.</p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-accept" id="cookieAccept">Accept All</button>
+      <button class="cookie-decline" id="cookieDecline">Decline</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
