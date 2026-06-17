@@ -245,7 +245,7 @@ function Home() {
 
     setIsSubmitting(true);
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || '';
+      const API_BASE = import.meta.env.VITE_API_URL || 'https://arshithgroups-backend.onrender.com';
       const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: {
