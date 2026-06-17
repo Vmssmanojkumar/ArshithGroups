@@ -3,6 +3,8 @@ import { useStylesheet } from '../hooks/useStylesheet';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 function LatestNews() {
   // Load Arshith Group Page stylesheets dynamically
   useStylesheet(['/styles.css', '/styles2.css', '/footer-premium.css']);
@@ -23,7 +25,7 @@ function LatestNews() {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
