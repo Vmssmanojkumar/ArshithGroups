@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,6 +31,7 @@ function Navbar() {
   };
 
   return (
+    <>
     <header className={`ag-header ${isScrolled ? 'ag-header--scrolled' : ''}`} id="agHeader">
       <nav className="ag-nav container">
         <Link to="/" className="ag-logo">
@@ -74,6 +76,10 @@ function Navbar() {
           </li>
         </ul>
         <div className="ag-nav-right">
+          <Link to="/ai-chart-bot" className="ag-ai-btn" aria-label="AI Chart Bot">
+            <span className="ag-ai-icon">📊</span>
+            <span className="ag-ai-label">AI Charts</span>
+          </Link>
           <button 
             className={`ag-hamburger ${isMobileOpen ? 'ag-ham-open' : ''}`} 
             onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -84,6 +90,13 @@ function Navbar() {
         </div>
       </nav>
     </header>
+
+    {/* Floating AI Chart Bot Button */}
+    <Link to="/ai-chart-bot" className="ag-ai-fab" aria-label="Open AI Chart Bot">
+      <span className="ag-ai-fab-icon">📊</span>
+      <span className="ag-ai-fab-tooltip">AI Chart Bot</span>
+    </Link>
+    </>
   );
 }
 

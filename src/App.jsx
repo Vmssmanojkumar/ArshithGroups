@@ -7,6 +7,7 @@ import AboutInfoTech from './pages/AboutInfoTech';
 import Internship from './pages/Internship';
 import LatestNews from './pages/LatestNews';
 import ArshithInfoTech from './pages/ArshithInfoTech';
+import AiChartBot from './pages/AiChartBot';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/internship" element={<Internship />} />
         <Route path="/latest-news" element={<LatestNews />} />
         <Route path="/arshith-infotech" element={<ArshithInfoTech />} />
+        <Route path="/ai-chart-bot" element={<AiChartBot />} />
       </Routes>
     </Router>
   );
