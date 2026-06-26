@@ -2654,7 +2654,7 @@ body .shopify-policy__container {
 /* Floating WhatsApp Button */
 .fresh-whatsapp-btn {
     position: fixed;
-    bottom: 30px;
+    bottom: 110px; /* Shifted up to stack above AGI Chatbot FAB */
     right: 30px;
     width: 60px;
     height: 60px;
@@ -2669,6 +2669,16 @@ body .shopify-policy__container {
     z-index: 1000;
     transition: transform 0.2s ease, background-color 0.2s ease;
     text-decoration: none;
+}
+
+@media (max-width: 480px) {
+    .fresh-whatsapp-btn {
+        bottom: 95px; /* Adjust mobile position */
+        right: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 1.8rem;
+    }
 }
 
 .fresh-whatsapp-btn i {
