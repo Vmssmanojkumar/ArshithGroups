@@ -108,7 +108,7 @@ function AgiRobotIcon({ size = 512, className = '' }) {
   );
 }
 
-// ── Bot Avatar: Renders robot icon ────────────────────────
+// ── Bot Avatar ───────────────────────────────────────────
 function BotAvatar() {
   return (
     <div className="ag-msg-avatar ag-msg-avatar-bot" aria-label="AGI Avatar">
@@ -117,7 +117,7 @@ function BotAvatar() {
   );
 }
 
-// ── User Avatar: Renders user icon ────────────────────────
+// ── User Avatar ──────────────────────────────────────────
 function UserAvatar() {
   return (
     <div className="ag-msg-avatar ag-msg-avatar-user" aria-label="User Avatar">
@@ -128,7 +128,7 @@ function UserAvatar() {
   );
 }
 
-// ── Typing Indicator ──────────────────────────────────────
+// ── Typing Indicator ─────────────────────────────────────
 function TypingIndicator() {
   return (
     <div className="ag-message-row">
@@ -142,19 +142,163 @@ function TypingIndicator() {
   );
 }
 
-// ── Single Message Bubble ─────────────────────────────────
-function MessageBubble({ msg }) {
+// ── Markdown Parser Helper ──────────────────────────────
+function renderMarkdown(text) {
+  if (!text) return '';
+  
+  // Basic security: escape dangerous characters
+  let html = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  
+  // Format bold **text**
+  html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  
+  // Format italics *text*
+  html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  
+  // Convert links [text](url)
+  html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="ag-md-link" target="_blank" rel="noopener noreferrer">$1</a>');
+
+  // Convert linebreaks
+  html = html.replace(/\n/g, '<br />');
+
+  // Parse bullet points
+  const lines = html.split('<br />');
+  let finalHtml = '';
+  let inList = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+      if (!inList) {
+        finalHtml += '<ul class="ag-md-ul">';
+        inList = true;
+      }
+      finalHtml += `<li class="ag-md-li">${trimmed.substring(2)}</li>`;
+    } else {
+      if (inList) {
+        finalHtml += '</ul>';
+        inList = false;
+      }
+      finalHtml += (i > 0 && finalHtml.length > 0 ? '<br />' : '') + line;
+    }
+  }
+  if (inList) {
+    finalHtml += '</ul>';
+  }
+
+  return <span dangerouslySetInnerHTML={{ __html: finalHtml }} />;
+}
+
+// ── Subsidiary Cards Parser ──────────────────────────────
+function getSubsidiaryCards(text) {
+  const cards = [];
+  const lower = text.toLowerCase();
+  
+  if (lower.includes('arshith fresh') || lower.includes('arshithfresh')) {
+    cards.push({
+      title: 'Arshith Fresh',
+      desc: 'Organic agricultural farm products & cold storage chains.',
+      url: 'https://arshithfresh.com',
+      icon: '🛒',
+      domain: 'arshithfresh.com'
+    });
+  }
+  if (lower.includes('arshith infotech') || lower.includes('arshithinfotech')) {
+    cards.push({
+      title: 'Arshith Infotech',
+      desc: 'SaaS solutions, software engineering & technical staff augmentation.',
+      url: 'https://arshithinfotech.com',
+      icon: '💻',
+      domain: 'arshithinfotech.com'
+    });
+  }
+  if (lower.includes('suntech solutions') || lower.includes('suntech organization') || lower.includes('suntechorganization')) {
+    cards.push({
+      title: 'Suntech Solutions',
+      desc: 'Next-generation networking infrastructure & network cybersecurity audits.',
+      url: 'https://suntechorganization.com',
+      icon: '🛡️',
+      domain: 'suntechorganization.com'
+    });
+  }
+  if (lower.includes('internship') || lower.includes('intern program')) {
+    cards.push({
+      title: 'Internship Program',
+      desc: 'Apply for tech, design, marketing, or ops internship tracks.',
+      url: '/internship',
+      icon: '🎓',
+      domain: 'arshithgroup.com/internship'
+    });
+  }
+  return cards;
+}
+
+// ── Single Message Bubble with Feedback & Link Cards ──────────
+function MessageBubble({ msg, onFeedback }) {
   const isUser = msg.role === 'user';
+  const subCards = !isUser ? getSubsidiaryCards(msg.text) : [];
+
   return (
     <div className={`ag-message-row${isUser ? ' ag-row-user' : ''}`}>
       {isUser ? <UserAvatar /> : <BotAvatar />}
-      <div className={`ag-bubble ${isUser ? 'ag-bubble-user' : 'ag-bubble-bot'}`}>
-        {msg.text}
-        {!isUser && msg.powered_by === 'gemini' && (
-          <div className="ag-gemini-badge">✦ Gemini</div>
-        )}
-        {!isUser && msg.powered_by === 'fallback' && (
-          <div className="ag-bubble-fallback-badge">⚡ Quick reply</div>
+      <div className="ag-bubble-container">
+        <div className={`ag-bubble ${isUser ? 'ag-bubble-user' : 'ag-bubble-bot'}`}>
+          {isUser ? msg.text : renderMarkdown(msg.text)}
+          
+          {!isUser && msg.powered_by === 'gemini' && (
+            <div className="ag-gemini-badge">✦ Gemini</div>
+          )}
+          {!isUser && msg.powered_by === 'fallback' && (
+            <div className="ag-bubble-fallback-badge">⚡ Quick reply</div>
+          )}
+
+          {/* Feedback buttons (thumbs up/down) for bot responses */}
+          {!isUser && (
+            <div className="ag-feedback-buttons">
+              <button
+                className={`ag-feedback-btn${msg.feedback === 'up' ? ' ag-feedback-active' : ''}`}
+                onClick={() => onFeedback(msg.id, 'up')}
+                title="Helpful"
+                aria-label="Thumbs up"
+              >
+                👍
+              </button>
+              <button
+                className={`ag-feedback-btn${msg.feedback === 'down' ? ' ag-feedback-active' : ''}`}
+                onClick={() => onFeedback(msg.id, 'down')}
+                title="Not helpful"
+                aria-label="Thumbs down"
+              >
+                👎
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Subsidiary Link Cards */}
+        {subCards.length > 0 && (
+          <div className="ag-sub-cards">
+            {subCards.map(card => (
+              <a
+                href={card.url}
+                key={card.title}
+                target={card.url.startsWith('http') ? '_blank' : '_self'}
+                rel="noopener noreferrer"
+                className="ag-sub-card"
+              >
+                <span className="ag-sub-card-icon">{card.icon}</span>
+                <div className="ag-sub-card-details">
+                  <div className="ag-sub-card-title">{card.title}</div>
+                  <div className="ag-sub-card-desc">{card.desc}</div>
+                  <div className="ag-sub-card-domain">{card.domain} ↗</div>
+                </div>
+              </a>
+            ))}
+          </div>
         )}
       </div>
     </div>
@@ -164,11 +308,32 @@ function MessageBubble({ msg }) {
 // ── Main Chatbot Component ────────────────────────────────
 export default function Chatbot() {
   const [isOpen, setIsOpen]             = useState(false);
-  const [showUnread, setShowUnread]     = useState(true);
-  const [messages, setMessages]         = useState([]);
+  const [showUnread, setShowUnread]     = useState(() => {
+    // Show unread pulse initially if user hasn't opened chatbot before
+    return localStorage.getItem('agi_chat_opened') !== 'true';
+  });
+  
+  // Initialize messages & chatHistory from localStorage
+  const [messages, setMessages]         = useState(() => {
+    try {
+      const saved = localStorage.getItem('agi_chat_messages');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [input, setInput]               = useState('');
   const [isTyping, setIsTyping]         = useState(false);
-  const [chatHistory, setChatHistory]   = useState([]);
+
+  const [chatHistory, setChatHistory]   = useState(() => {
+    try {
+      const saved = localStorage.getItem('agi_chat_history');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const messagesEndRef = useRef(null);
   const inputRef       = useRef(null);
@@ -179,6 +344,23 @@ export default function Chatbot() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  // Sync state changes to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('agi_chat_messages', JSON.stringify(messages));
+    } catch (e) {
+      console.error('Failed to save chat messages', e);
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('agi_chat_history', JSON.stringify(chatHistory));
+    } catch (e) {
+      console.error('Failed to save chat history', e);
+    }
+  }, [chatHistory]);
+
   // Focus textarea when panel opens
   useEffect(() => {
     if (isOpen) {
@@ -188,10 +370,32 @@ export default function Chatbot() {
 
   const handleFabClick = () => {
     setIsOpen(prev => !prev);
-    if (!isOpen && showUnread) setShowUnread(false);
+    if (!isOpen) {
+      setShowUnread(false);
+      localStorage.setItem('agi_chat_opened', 'true');
+    }
   };
 
-  // Core send logic
+  const handleFeedback = (msgId, type) => {
+    setMessages(prev => prev.map(m => {
+      if (m.id === msgId) {
+        // Toggle feedback rating
+        return { ...m, feedback: m.feedback === type ? null : type };
+      }
+      return m;
+    }));
+  };
+
+  const clearChat = () => {
+    if (window.confirm('Clear conversation history? This cannot be undone.')) {
+      setMessages([]);
+      setChatHistory([]);
+      localStorage.removeItem('agi_chat_messages');
+      localStorage.removeItem('agi_chat_history');
+    }
+  };
+
+  // Core send logic with Snappy Dynamic Latency
   const sendMessage = useCallback(async (text) => {
     const userText = (text || input).trim();
     if (!userText || isTyping) return;
@@ -200,11 +404,16 @@ export default function Chatbot() {
     const userMsg = { role: 'user', text: userText, id: Date.now() };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto'; // Reset text area height
+    }
     setIsTyping(true);
 
-    // 2. Build history payload (last 12 = 6 exchanges)
+    // 2. Build history payload (last 12 messages = 6 exchanges)
     const newHistory = [...chatHistory, { role: 'user', text: userText }];
     const recentHistory = newHistory.slice(-12);
+
+    const startTime = Date.now();
 
     try {
       const res = await fetch(`${API_URL}/api/chatbot`, {
@@ -217,17 +426,23 @@ export default function Chatbot() {
       });
 
       const data = await res.json();
-      const replyText = data.reply || 'Sorry, I couldn\'t understand that. Please try again.';
+      const replyText = data.reply || 'Sorry, I encountered an issue. Let me try again.';
       const poweredBy = data.powered_by || 'fallback';
 
-      // 3. Simulate 3s typing delay then reveal bot reply
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // 3. Dynamic Latency: show typing indicator for at least 1.2s to feel natural
+      const endTime = Date.now();
+      const elapsed = endTime - startTime;
+      const delay = Math.max(0, 1200 - elapsed);
+      if (delay > 0) {
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
 
       const botMsg = {
         role: 'model',
         text: replyText,
         powered_by: poweredBy,
         id: Date.now() + 1,
+        feedback: null
       };
 
       setMessages(prev => [...prev, botMsg]);
@@ -238,12 +453,19 @@ export default function Chatbot() {
       ]);
 
     } catch {
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Dynamic fallback delay on failure
+      const elapsed = Date.now() - startTime;
+      const delay = Math.max(0, 1200 - elapsed);
+      if (delay > 0) {
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+      
       const errMsg = {
         role: 'model',
         text: 'I\'m having trouble connecting right now. Please check your connection and try again.',
         powered_by: 'fallback',
         id: Date.now() + 1,
+        feedback: null
       };
       setMessages(prev => [...prev, errMsg]);
     } finally {
@@ -255,6 +477,15 @@ export default function Chatbot() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    // Auto-grow input textarea height dynamically
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = `${Math.min(90, inputRef.current.scrollHeight)}px`;
     }
   };
 
@@ -274,7 +505,7 @@ export default function Chatbot() {
           {/* Unread badge */}
           {showUnread && !isOpen && <span className="ag-unread-badge" aria-hidden="true" />}
 
-          {/* Restored custom AGI Chibi Robot Icon inside the FAB */}
+          {/* Custom AGI Chibi Robot Icon inside the FAB */}
           <div className="ag-fab-icon-chat-container">
             <AgiRobotIcon size={46} />
           </div>
@@ -307,6 +538,25 @@ export default function Chatbot() {
               Online · Ready to help
             </div>
           </div>
+          
+          {/* Clear history button */}
+          {!isEmpty && (
+            <button
+              className="ag-chat-clear-btn"
+              onClick={clearChat}
+              title="Clear chat history"
+              aria-label="Clear chat"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                <line x1="10" y1="11" x2="10" y2="17" />
+                <line x1="14" y1="11" x2="14" y2="17" />
+              </svg>
+            </button>
+          )}
+
+          {/* Close button */}
           <button
             className="ag-chat-close-btn"
             onClick={() => setIsOpen(false)}
@@ -352,7 +602,7 @@ export default function Chatbot() {
 
           {/* Rendered messages */}
           {messages.map(msg => (
-            <MessageBubble key={msg.id} msg={msg} />
+            <MessageBubble key={msg.id} msg={msg} onFeedback={handleFeedback} />
           ))}
 
           {/* Typing indicator */}
@@ -370,7 +620,7 @@ export default function Chatbot() {
             rows={1}
             placeholder="Ask Arshith Groups Intelligence…"
             value={input}
-            onChange={e => setInput(e.target.value)}
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             disabled={isTyping}
             aria-label="Chat message input"

@@ -385,8 +385,14 @@
   color: #050816;
 }
 
-.ag-bubble {
+.ag-bubble-container {
   max-width: 78%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ag-bubble {
+  width: 100%;
   padding: 11px 14px;
   border-radius: 16px;
   font-size: 0.8rem;
@@ -577,4 +583,142 @@
     bottom: 18px;
     right: 18px;
   }
+}
+
+/* ── Redesign Additions: Clear Chat, Markdown, Feedback & Subsidiary Cards ── */
+.ag-chat-clear-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--cb-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.ag-chat-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cb-primary);
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: scale(1.08);
+}
+.ag-chat-clear-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Markdown Styles */
+.ag-md-link {
+  color: #00E5FF;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px dashed rgba(0, 229, 255, 0.4);
+  transition: all 0.25s ease;
+}
+.ag-md-link:hover {
+  color: #8B5CF6;
+  border-bottom-color: rgba(139, 92, 246, 0.8);
+}
+.ag-md-ul {
+  margin: 6px 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+.ag-md-li {
+  margin-bottom: 4px;
+}
+
+/* Feedback thumbs-up/down */
+.ag-feedback-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 6px;
+  justify-content: flex-end;
+}
+.ag-feedback-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+}
+.ag-feedback-btn:hover {
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.05);
+}
+.ag-feedback-btn.ag-feedback-active {
+  opacity: 1;
+  background: rgba(0, 229, 255, 0.12);
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
+}
+
+/* Subsidiary Rich Link Cards */
+.ag-sub-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  width: 100%;
+  animation: ag-fade-up 0.3s ease both;
+}
+.ag-sub-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: var(--cb-text);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+}
+.ag-sub-card:hover {
+  background: rgba(0, 229, 255, 0.05);
+  border-color: rgba(0, 229, 255, 0.3);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.1);
+}
+.ag-sub-card-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.ag-sub-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ag-sub-card-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #00E5FF;
+}
+.ag-sub-card-desc {
+  font-size: 0.65rem;
+  color: var(--cb-text-muted);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.ag-sub-card-domain {
+  font-size: 0.58rem;
+  color: var(--cb-text-dim);
+  font-weight: 500;
+  margin-top: 2px;
 }

@@ -17,8 +17,24 @@ const app = express();
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
+  'https://arshithgroup.com',
+  'https://www.arshithgroup.com',
+  'https://arshithgroups.web.app'
+];
 app.use(cors({
-  origin: '*', // Allows connections from any origin (e.g. Vite dev port 5173/5174/5175 etc)
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1 || origin.startsWith('http://localhost:')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -216,6 +232,59 @@ YOUR BEHAVIOR RULES:
       reply: getFallbackReply(message),
       powered_by: 'fallback',
     });
+  }
+});
+
+// AI Chart Bot Endpoint
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { message } = req.body;
+    if (!message) {
+      return res.status(400).json({ error: 'Message is required.' });
+    }
+
+    const systemPrompt = `You are an analytics assistant for Arshith Groups.
+Your job is to generate chart data based on the user's request.
+Always return ONLY valid JSON — no markdown, no explanation, no code fences.
+
+The JSON must follow this exact format:
+{
+  "chartType": "bar" | "line" | "pie",
+  "title": "<chart title>",
+  "data": [
+    { "label": "<name>", "value": <number> }
+  ]
+}
+
+If the user's query cannot be answered with a chart, return:
+{ "error": "I can only generate chart data. Please ask for analytics or data visualisation." }
+
+User question: ${message}`;
+
+    if (!googleGenAI) {
+      return res.status(503).json({ error: 'AI service is currently unavailable. Please try again in a moment.' });
+    }
+
+    const response = await googleGenAI.models.generateContent({
+      model: 'gemini-2.0-flash',
+      contents: [{ role: 'user', parts: [{ text: systemPrompt }] }],
+    });
+
+    const raw = response.text.trim();
+    const cleaned = raw.replace(/^```[a-z]*\n?/i, '').replace(/```$/i, '').trim();
+    const parsed = JSON.parse(cleaned);
+    res.json(parsed);
+  } catch (error) {
+    console.error('Chart AI error:', error.message);
+    let friendlyMsg = 'Something went wrong with the AI service. Please try again.';
+    if (error.message.includes('overloaded') || error.message.includes('503') || error.message.includes('UNAVAILABLE')) {
+      friendlyMsg = 'The AI is experiencing high demand right now. Please wait a moment and try again.';
+    } else if (error.message.includes('API key') || error.message.includes('401')) {
+      friendlyMsg = 'API key issue. Please check the server configuration.';
+    } else if (error.message.includes('quota') || error.message.includes('429')) {
+      friendlyMsg = 'API quota exceeded. Please try again later.';
+    }
+    res.status(500).json({ error: friendlyMsg });
   }
 });
 
