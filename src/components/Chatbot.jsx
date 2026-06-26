@@ -11,6 +11,50 @@ const CHIPS = [
   { emoji: '📞', label: 'Contact' },
 ];
 
+const CLIENT_FALLBACK_RESPONSES = [
+  {
+    keywords: ['fresh', 'ecommerce', 'e-commerce', 'farm', 'grocery', 'food', 'shop'],
+    reply: "Arshith Fresh India Pvt Ltd is our flagship e-commerce platform, established in 2025. We bring fresh, quality products directly from farms to consumers across India — bridging the gap between producers and customers with technology. Visit arshithfresh.com to learn more!"
+  },
+  {
+    keywords: ['infotech', 'it', 'software', 'tech', 'technology', 'development', 'cloud', 'web'],
+    reply: "Arshith Infotech is our IT & software arm, delivering cutting-edge solutions across web development, cloud services, digital transformation, and software consulting. We help businesses leverage technology to scale efficiently."
+  },
+  {
+    keywords: ['suntech', 'consulting', 'business', 'solution', 'strategy'],
+    reply: "Suntech Solutions, established in 2019, is our business consulting division. We provide strategic guidance, operational improvements, and growth strategies to help organizations achieve their goals across diverse industries."
+  },
+  {
+    keywords: ['intern', 'internship', 'job', 'career', 'work', 'apply', 'hire', 'opportunity', 'training'],
+    reply: "We offer exciting internship programs across IT, e-commerce, and business consulting! Apply via our Google Form on the Internship page and complete the Quizzory assessment. It's a great opportunity to work with a growing multi-sector group. Visit our Internship page for details!"
+  },
+  {
+    keywords: ['ceo', 'farook', 'founder', 'leader', 'director', 'head'],
+    reply: "Arshith Group is led by our visionary CEO, Farook N, who founded the group and has driven its expansion across IT, e-commerce, and consulting. Under his leadership, Arshith Group has grown into a dynamic multi-sector enterprise since 2019."
+  },
+  {
+    keywords: ['contact', 'reach', 'email', 'phone', 'call', 'message', 'touch'],
+    reply: "You can reach Arshith Group through our Contact Us page on this website. Fill in the form and our team will get back to you promptly. We'd love to hear from you!"
+  },
+  {
+    keywords: ['history', 'journey', 'founded', 'year', 'timeline', 'established', 'started', 'when'],
+    reply: "Arshith Group's journey: 🏢 2019 — Suntech Solutions founded · 💻 2021 — Arshith Infotech launched · 📈 2023 — Major expansion in IT consulting · 🛒 2025 — Arshith Fresh India Pvt Ltd established · 🚀 2026 — Continuing to grow across all divisions!"
+  },
+  {
+    keywords: ['arshith', 'group', 'company', 'about', 'who', 'what', 'business', 'overview'],
+    reply: "Arshith Group is a dynamic multi-sector enterprise operating across three core divisions: Arshith Infotech (IT & software), Arshith Fresh India Pvt Ltd (e-commerce & farm-to-consumer), and Suntech Solutions (business consulting). Founded in 2019, we are committed to innovation and growth!"
+  },
+];
+
+function getClientFallbackReply(message) {
+  const lower = message.toLowerCase();
+  for (const { keywords, reply } of CLIENT_FALLBACK_RESPONSES) {
+    if (keywords.some(kw => lower.includes(kw))) return reply;
+  }
+  return "Welcome to Arshith Group! We operate across IT services (Arshith Infotech), e-commerce (Arshith Fresh), and business consulting (Suntech Solutions). Ask me about our services, internship programs, company history, or how to contact us — I'm happy to help! 😊";
+}
+
+
 // ── Custom AGI Chibi Robot Icon Component ──────────────────
 function AgiRobotIcon({ size = 512, className = '' }) {
   return (
@@ -425,6 +469,10 @@ export default function Chatbot() {
         }),
       });
 
+      if (!res.ok) {
+        throw new Error('API server returned error status');
+      }
+
       const data = await res.json();
       const replyText = data.reply || 'Sorry, I encountered an issue. Let me try again.';
       const poweredBy = data.powered_by || 'fallback';
@@ -452,7 +500,8 @@ export default function Chatbot() {
         { role: 'model', text: replyText },
       ]);
 
-    } catch {
+    } catch (err) {
+      console.warn('⚠️ Fetch failed, using client-side fallback reply:', err);
       // Dynamic fallback delay on failure
       const elapsed = Date.now() - startTime;
       const delay = Math.max(0, 1200 - elapsed);
@@ -460,14 +509,20 @@ export default function Chatbot() {
         await new Promise(resolve => setTimeout(resolve, delay));
       }
       
-      const errMsg = {
+      const clientReply = getClientFallbackReply(userText);
+      const fallbackMsg = {
         role: 'model',
-        text: 'I\'m having trouble connecting right now. Please check your connection and try again.',
+        text: clientReply,
         powered_by: 'fallback',
         id: Date.now() + 1,
         feedback: null
       };
-      setMessages(prev => [...prev, errMsg]);
+      setMessages(prev => [...prev, fallbackMsg]);
+      setChatHistory(prev => [
+        ...prev,
+        { role: 'user',  text: userText  },
+        { role: 'model', text: clientReply },
+      ]);
     } finally {
       setIsTyping(false);
     }
