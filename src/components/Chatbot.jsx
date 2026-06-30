@@ -49,106 +49,50 @@ const CLIENT_FALLBACK_RESPONSES = [
 function getClientFallbackReply(message) {
   const lower = message.toLowerCase();
   for (const { keywords, reply } of CLIENT_FALLBACK_RESPONSES) {
-    if (keywords.some(kw => lower.includes(kw))) return reply;
+    if (keywords.some(kw => {
+      if (kw.length <= 3) {
+        const regex = new RegExp(`\\b${kw}\\b`, 'i');
+        return regex.test(lower);
+      }
+      return lower.includes(kw);
+    })) {
+      return reply;
+    }
   }
   return "Welcome to Arshith Group! We operate across IT services (Arshith Infotech), e-commerce (Arshith Fresh), and business consulting (Suntech Solutions). Ask me about our services, internship programs, company history, or how to contact us — I'm happy to help! 😊";
 }
 
 
-// ── Custom AGI Chibi Robot Icon Component ──────────────────
-function AgiRobotIcon({ size = 512, className = '' }) {
+// ── Custom AG Logo Component ──────────────────
+function AgLogo({ size = 512, className = '' }) {
   return (
-    <svg 
-      width={size} 
-      height={size} 
-      viewBox="0 0 512 512" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg"
-      className={`agi-robot-svg ${className}`}
+    <div 
+      className={`ag-logo-container ${className}`}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'transparent',
+        padding: 0,
+        margin: 0
+      }}
     >
-      {/* Dark Teal Speech Bubble Background */}
-      <path 
-        d="M 256,16 C 123.4,16 16,110.8 16,227.7 c 0,55.1 22.8,105.1 60,141.7 C 54,435.5 16,482 12,487 c 12,1.3 90.6,-16.8 160,-57.4 C 200.7,435.7 227.9,439.4 256,439.4 c 132.6,0 240,-94.8 240,-211.7 C 496,110.8 388.6,16 256,16 Z" 
-        fill="#072C2C"
+      <img 
+        src="/logos/AG-logo.png" 
+        alt="AG Logo" 
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          display: 'block',
+          borderRadius: '50%'
+        }}
       />
-      
-      {/* Robot Antenna Pole */}
-      <rect x="248" y="44" width="16" height="60" rx="4" fill="#E2E8F0" />
-      {/* Antenna Base */}
-      <rect x="228" y="98" width="56" height="14" rx="6" fill="#CBD5E1" />
-      {/* Antenna Tip Orb */}
-      <circle cx="256" cy="36" r="18" fill="#FFFFFF" />
-
-      {/* Waving Arm (on the right) */}
-      <path 
-        d="M 330,400 Q 375,390 410,345 C 430,320 415,295 395,320 Q 365,360 330,378 Z" 
-        fill="#FFFFFF" 
-      />
-
-      {/* Robot Body */}
-      <path 
-        d="M 180,336 C 180,336 170,390 170,440 C 170,460 342,460 342,440 C 342,390 332,336 332,336 Z" 
-        fill="#FFFFFF" 
-      />
-
-      {/* AGI Text on Chest */}
-      <text 
-        x="256" 
-        y="412" 
-        fontFamily="'Space Grotesk', 'Sora', sans-serif" 
-        fontWeight="800" 
-        fontSize="46" 
-        fill="#072C2C" 
-        textAnchor="middle" 
-        letterSpacing="0.05em"
-      >
-        AGI
-      </text>
-
-      {/* Head Shadow on Neck */}
-      <ellipse cx="256" cy="336" rx="100" ry="12" fill="#E2E8F0" opacity="0.8" />
-
-      {/* Robot Head */}
-      <rect x="100" y="112" width="312" height="224" rx="100" fill="#FFFFFF" />
-
-      {/* Visor Ear Capsules */}
-      <rect x="94" y="178" width="16" height="70" rx="6" fill="#1E293B" />
-      <rect x="402" y="178" width="16" height="70" rx="6" fill="#1E293B" />
-
-      {/* Visor Glasses */}
-      <rect x="106" y="160" width="300" height="106" rx="44" fill="#0A0F1D" />
-
-      {/* Glowing Cyan Eyes */}
-      {/* Left Eye */}
-      <circle cx="195" cy="213" r="32" stroke="#00E5FF" strokeWidth="5" fill="#0F172A" />
-      <circle cx="195" cy="213" r="14" fill="#FFFFFF" />
-      <circle cx="200" cy="208" r="5" fill="#FFFFFF" />
-
-      {/* Right Eye */}
-      <circle cx="317" cy="213" r="32" stroke="#00E5FF" strokeWidth="5" fill="#0F172A" />
-      <circle cx="317" cy="213" r="14" fill="#FFFFFF" />
-      <circle cx="322" cy="208" r="5" fill="#FFFFFF" />
-
-      {/* Mouth */}
-      <path 
-        d="M 216,285 Q 256,310 296,285" 
-        stroke="#072C2C" 
-        strokeWidth="7" 
-        strokeLinecap="round" 
-        fill="none" 
-      />
-
-      {/* Headset Mic Wire */}
-      <path 
-        d="M 406,213 C 406,290 380,312 324,316" 
-        stroke="#072C2C" 
-        strokeWidth="5" 
-        strokeLinecap="round" 
-        fill="none" 
-      />
-      {/* Mic Tip */}
-      <rect x="312" y="310" width="18" height="12" rx="6" fill="#0A0F1D" />
-    </svg>
+    </div>
   );
 }
 
@@ -156,7 +100,7 @@ function AgiRobotIcon({ size = 512, className = '' }) {
 function BotAvatar() {
   return (
     <div className="ag-msg-avatar ag-msg-avatar-bot" aria-label="AGI Avatar">
-      <AgiRobotIcon size={32} />
+      <AgLogo size={32} />
     </div>
   );
 }
@@ -560,9 +504,9 @@ export default function Chatbot() {
           {/* Unread badge */}
           {showUnread && !isOpen && <span className="ag-unread-badge" aria-hidden="true" />}
 
-          {/* Custom AGI Chibi Robot Icon inside the FAB */}
+          {/* Custom AG Logo inside the FAB */}
           <div className="ag-fab-icon-chat-container">
-            <AgiRobotIcon size={46} />
+            <AgLogo size={46} />
           </div>
 
           {/* Close icon */}
@@ -584,7 +528,7 @@ export default function Chatbot() {
         {/* Header */}
         <div className="ag-chat-header">
           <div className="ag-chat-header-logo-container">
-            <AgiRobotIcon size={38} />
+            <AgLogo size={38} />
           </div>
           <div className="ag-chat-header-info">
             <div className="ag-chat-header-title">Arshith Groups Intelligence</div>
@@ -631,7 +575,7 @@ export default function Chatbot() {
             <>
               <div className="ag-welcome-card">
                 <div className="ag-welcome-icon-container">
-                  <AgiRobotIcon size={70} />
+                  <AgLogo size={70} />
                 </div>
                 <div className="ag-welcome-title">👋 Welcome to AGI!</div>
                 <div className="ag-welcome-sub">
